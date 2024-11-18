@@ -77,7 +77,7 @@ void LinkedList::print(){
     }
     cout << endl;
 }
-int LinkedList::media() {
+float LinkedList::media() {
     if (start == nullptr) {
         cout << "La lista è vuota." << endl;
         return 0; 
@@ -92,10 +92,11 @@ int LinkedList::media() {
         current = current->get_next();
     }
 
-    return media / count;
+    return ((float) media) / count;
 }
+
 int LinkedList::nearMedia() {
-    int Media = media();
+    float Media = media();
     
     if (start == nullptr) {
         cout << "empty" << endl;
@@ -104,11 +105,11 @@ int LinkedList::nearMedia() {
     
     s_node* current = start;
     int near = current->get_data();
-    int minDiff = abs(near - Media);
+    float minDiff = abs(near - Media);
 
     while (current != nullptr) {
         int dataCurrent = current->get_data();
-        int currentDiff = abs(dataCurrent - Media);
+        float currentDiff = abs(dataCurrent - Media);
 
         if (currentDiff < minDiff) {
             near = dataCurrent;
@@ -182,10 +183,13 @@ void LinkedList::removeMult(int val) {
     if (start == nullptr) {
         cout << "La lista è vuota." << endl;
         return;
+    } else if(start->get_data() % val ==0){
+        s_node *sn = start;
+        start = start->get_next();
+        delete sn;
     }
 
     s_node *current = start;
-
     while (current != nullptr) {
         s_node *next = current->get_next();
         if (next != nullptr && next->get_data() % val == 0) {

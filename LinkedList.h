@@ -17,7 +17,7 @@ class LinkedList{
     bool is_empty();
 
     void print();
-    int media();
+    float media();
     int nearMedia();
     private: 
     class s_node{
